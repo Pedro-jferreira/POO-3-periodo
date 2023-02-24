@@ -236,14 +236,14 @@ public class ScreenTelevisor extends JFrame {
 }
 class Icons {
     public Image icon1() {
-        return Toolkit.getDefaultToolkit().getImage("C:\\Users\\pedro\\IdeaProjects\\newpoo\\src\\bandft.jpeg");
+        return Toolkit.getDefaultToolkit().getImage(new Arquivos().VerificarArq()+"\\bandft.jpeg");
     }
     public Image icon2() {
-        return Toolkit.getDefaultToolkit().getImage("C:\\Users\\pedro\\IdeaProjects\\newpoo\\src\\globoft.jpeg");
+        return Toolkit.getDefaultToolkit().getImage(new Arquivos().VerificarArq()+"\\globoft.jpeg");
     }
     public Image icon3(){
-        return Toolkit.getDefaultToolkit().getImage("C:\\Users\\pedro\\IdeaProjects\\newpoo\\src\\redetvft.jpeg");
+        return Toolkit.getDefaultToolkit().getImage(new Arquivos().VerificarArq()+"\\redetvft.jpeg");
     }
     public Image icon4(){
-        return Toolkit.getDefaultToolkit().getImage("C:\\Users\\pedro\\IdeaProjects\\newpoo\\src\\sbtft.jpeg");
+        return Toolkit.getDefaultToolkit().getImage(new Arquivos().VerificarArq()+"\\sbtft.jpeg");
     }}

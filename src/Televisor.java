@@ -80,7 +80,7 @@ public class Televisor
     }
     public int lerVolume() {return Integer.parseInt(String.valueOf(getPaths(getVolumeUri())));}
     public void SalvarVolume() {setPaths(new StringBuilder(String.valueOf(getVolume())),getVolumeUri(),false);}
-    public String getVolumeUri() {return "C:\\Users\\pedro\\IdeaProjects\\newpoo\\src\\volume.txt";}
+    public String getVolumeUri() {return new Arquivos().VerificarArq()+"\\volume.txt";}
     public boolean VerificaCanais(int canais,String op) {
         if (canais ==-2000)
         {
@@ -104,13 +104,13 @@ public class Televisor
     }
     public int lerCanais(){return Integer.parseInt(String.valueOf(getPaths(getCanaisUri())));}
     public void SalvarCanais() {setPaths(new StringBuilder(String.valueOf(getCanais())),getCanaisUri(),false);}
-    public String getCanaisUri() { return "C:\\Users\\pedro\\IdeaProjects\\newpoo\\src\\canal.txt";}
-    public void setPaths(StringBuilder salvar, String URI, boolean concat) {
+    public String getCanaisUri() { return new Arquivos().VerificarArq()+"\\canal.txt";}
+    public void setPaths(StringBuilder stringBuilder, String URI, boolean concat) {
         try
         {
             BufferedWriter gravar;
             gravar = new BufferedWriter(new FileWriter(URI,concat));
-            gravar.write(String.valueOf(salvar));
+            gravar.write(String.valueOf(stringBuilder));
             gravar.flush();
         }
         catch (IOException e)
