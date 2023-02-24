@@ -98,7 +98,7 @@ public class Televisor
             return true;
         }else
         {
-            JOptionPane.showMessageDialog(null,"só temos 3 canais no momento");
+            JOptionPane.showMessageDialog(null,"só temos 4 canais no momento");
             return false;
         }
     }

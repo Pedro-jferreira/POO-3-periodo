@@ -199,7 +199,7 @@ public class ScreenTelevisor extends JFrame {
             }
             case 1 -> {
                 System.out.println("canal 1");
-                JL4 .setText("canal 2 -> globo");
+                JL4 .setText("canal 1 -> globo");
                 JL3.setIcon(icon2);
                 JL3.setVisible(true);
                 add(JL3);
@@ -215,13 +215,13 @@ public class ScreenTelevisor extends JFrame {
             }
             case 3 -> {
                 System.out.println("canal 3");
-                JL4.setText("canal 3 -> sbt");
+                JL4.setText("canal 3-> sbt");
                 JL3.setIcon(icon4);
                 JL3.setVisible(true);
                 add(JL3);
                 atualiza();
             }
-            default -> System.out.println("só existem 3 canais no momento");
+            default -> System.out.println("só existem 4 canais no momento");
         }
     }
 
