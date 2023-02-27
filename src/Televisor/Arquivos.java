@@ -1,3 +1,5 @@
+package Televisor;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -12,15 +14,11 @@ public class Arquivos
     public String getUripadrao() {
         return uripadrao;
     }
-
-    public void setUripadrao() 
-    {
+    public void setUripadrao() {
         this.uripadrao = "C:\\televisor\\televisor.txt";
         this.uripadrao = ExistsURI(uripadrao, "C:\\televisor");   
     }
-
-    public String ExistsURI(String uri, String diretorio) 
-    {
+    public String ExistsURI(String uri, String diretorio) {
         File file = new File(diretorio);
 
         if (!file.exists()) 
@@ -40,29 +38,23 @@ public class Arquivos
         }
         return uri;
     }
-
-    public String VerificarArq() 
-    {
+    public String VerificarArq() {
         setUripadrao();
 
-        if (!VerificarTexto()) 
+        if (!VerificarTexto())
         {
-            new Televisor().setPaths(new StringBuilder(String.valueOf(Solicitaruri())), getUripadrao(), false);
+            new Televisor().setPaths(new StringBuilder(String.valueOf(SolicitarUri())), getUripadrao(), false);
             VerificarArq();
         }
         return String.valueOf(new Televisor().getPaths(getUripadrao()));
     }
-
-    public String Solicitaruri() 
-    {
+    public String SolicitarUri() {
         return JOptionPane.showInputDialog(null, """
                 não encontrei o seu arquivo padrão
                 por favor digite o caminho completo da pasta de arquivos desse programa
                 ou entre em contato com o desenvolvedor: pedrojferreiradev@gmail.com""");
     }
-
-    public boolean VerificarTexto() 
-    {
+    public boolean VerificarTexto() {
         File file = new File(getUripadrao());
         String texto = null;
          try (Scanner scan = new Scanner(file)) 

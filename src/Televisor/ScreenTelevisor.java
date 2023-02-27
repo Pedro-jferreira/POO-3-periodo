@@ -1,3 +1,5 @@
+package Televisor;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -89,6 +91,10 @@ public class ScreenTelevisor extends JFrame {
         JB5.setForeground(cor1);
         JB5.setFocusable(true);
         JB5.setVisible(true);
+        JB5.addActionListener(e -> {
+            new Televisor().setCanais(Integer.parseInt(JTF1.getText()),"[[");
+            TrocarCanais();
+        });
 
 
         JTF1 = new JTextField("digite um canal");

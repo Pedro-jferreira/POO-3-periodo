@@ -1,10 +1,12 @@
+package Televisor;
+
 import javax.swing.*;
 import java.io.*;
 
 public class Televisor
 {
-    int volume;
-    int canais;
+    private int volume;
+    private int canais;
     public int getCanais() {return canais;}
     public void setCanais(int canais, String mudar) {
 
