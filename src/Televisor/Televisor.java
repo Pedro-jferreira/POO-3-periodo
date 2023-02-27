@@ -106,13 +106,12 @@ public class Televisor
     public void SalvarCanais() {setPaths(new StringBuilder(String.valueOf(getCanais())),getCanaisUri(),false);}
     public String getCanaisUri() { return new Arquivos().VerificarArq()+"\\canal.txt";}
     public void setPaths(StringBuilder stringBuilder, String URI, boolean concat) {
-        try
-        {
-            BufferedWriter gravar;
-            gravar = new BufferedWriter(new FileWriter(URI,concat));
-            gravar.write(String.valueOf(stringBuilder));
-            gravar.flush();
-        }
+        
+            try (BufferedWriter gravar = new BufferedWriter(new FileWriter(URI,concat))) {
+                gravar.write(String.valueOf(stringBuilder));
+                gravar.flush();
+            }
+        
         catch (IOException e)
         {
             JOptionPane.showMessageDialog(null,"nao foi possível gravar");
@@ -121,11 +120,11 @@ public class Televisor
     }
     public StringBuilder getPaths(String URI) {
         StringBuilder ItemSalvo;
-        try
+        
+        try (BufferedReader ler = new BufferedReader(new FileReader(URI))) 
         {
-            BufferedReader ler = new BufferedReader(new FileReader(URI));
             ItemSalvo = new StringBuilder(ler.readLine());
-        }
+         }
         catch (IOException e)
         {
             JOptionPane.showMessageDialog(null,"nao foi possível ler!");

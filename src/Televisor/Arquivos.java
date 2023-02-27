@@ -7,7 +7,17 @@ import javax.swing.JOptionPane;
 
 public class Arquivos 
 {
-    String uripadrao;
+    private String uripadrao;
+
+    public String getUripadrao() {
+        return uripadrao;
+    }
+
+    public void setUripadrao() 
+    {
+        this.uripadrao = "C:\\televisor\\televisor.txt";
+        this.uripadrao = ExistsURI(uripadrao, "C:\\televisor");   
+    }
 
     public String ExistsURI(String uri, String diretorio) 
     {
@@ -33,14 +43,14 @@ public class Arquivos
 
     public String VerificarArq() 
     {
-        uripadrao = "C:\\televisor\\televisor.txt";
-        uripadrao = ExistsURI(uripadrao, "C:\\televisor");
+        setUripadrao();
+
         if (!VerificarTexto()) 
         {
-            new Televisor().setPaths(new StringBuilder(String.valueOf(Solicitaruri())), uripadrao, false);
+            new Televisor().setPaths(new StringBuilder(String.valueOf(Solicitaruri())), getUripadrao(), false);
             VerificarArq();
         }
-        return String.valueOf(new Televisor().getPaths(uripadrao));
+        return String.valueOf(new Televisor().getPaths(getUripadrao()));
     }
 
     public String Solicitaruri() 
@@ -53,15 +63,15 @@ public class Arquivos
 
     public boolean VerificarTexto() 
     {
-        File file = new File(uripadrao);
+        File file = new File(getUripadrao());
         String texto = null;
-        try 
-        {
-            Scanner scan = new Scanner(file);
+         try (Scanner scan = new Scanner(file)) 
+         {
             if (scan.hasNextLine()) 
             {
                 texto = scan.next();
             }
+        
         } catch (FileNotFoundException e) 
         {
             throw new RuntimeException(e);
