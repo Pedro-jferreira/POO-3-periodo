@@ -1,13 +1,14 @@
 package Televisor;
 
 import javax.swing.*;
-import java.io.*;
 
 public class Televisor
 {
     private int volume;
     private int canais;
+
     public int getCanais() {return canais;}
+
     public void setCanais(int canais, String mudar) {
 
         this.canais= lerCanais();
@@ -26,14 +27,17 @@ public class Televisor
                     System.out.println(getCanais());
                 }
                 case "=="-> this.canais=lerCanais();
-                case "[["-> this.canais=canais;
+                case "[]"-> this.canais=canais;
                 default -> System.out.println("erro1");
             }
             SalvarCanais();
         }else System.out.println("esse canal não existe");
     }
-    public int MostrarCanais(int canais){setCanais(canais,"==");return getCanais();}
+
+    public int MostrarCanais(){setCanais(-2000,"==");return getCanais();}
+
     public int getVolume() {return volume;}
+
     public void setVolume(String volume) {
         this.volume= lerVolume();
 
@@ -58,7 +62,8 @@ public class Televisor
         }else System.out.println("erro");
     }
     public int MostrarVolume(){setVolume("==");return getVolume();}
-    public Boolean VerificaVolume(int volume) {
+
+    private Boolean VerificaVolume(int volume) {
 
         if (volume >= 0 && volume <= 100)
         {
@@ -69,7 +74,8 @@ public class Televisor
             return false;
         }
     }
-    public int DelimitarVolume(int volume, String op) {
+
+    private int DelimitarVolume(int volume, String op) {
         switch (op){
             case "++" -> {
                 return volume+1;
@@ -80,10 +86,14 @@ public class Televisor
         }
         return volume;
     }
-    public int lerVolume() {return Integer.parseInt(String.valueOf(getPaths(getVolumeUri())));}
-    public void SalvarVolume() {setPaths(new StringBuilder(String.valueOf(getVolume())),getVolumeUri(),false);}
-    public String getVolumeUri() {return new Arquivos().VerificarArq()+"\\volume.txt";}
-    public boolean VerificaCanais(int canais,String op) {
+
+    private int lerVolume() {return Integer.parseInt(String.valueOf(new Paths().getPaths(getVolumeUri())));}
+
+    private void SalvarVolume() {new Paths().setPaths(new StringBuilder(String.valueOf(getVolume())),getVolumeUri(),false);}
+
+    private String getVolumeUri() {return new Arquivos().VerificarArq()+"\\volume.txt";}
+
+    private boolean VerificaCanais(int canais,String op) {
         if (canais ==-2000)
         {
             switch (op)
@@ -104,34 +114,11 @@ public class Televisor
             return false;
         }
     }
-    public int lerCanais(){return Integer.parseInt(String.valueOf(getPaths(getCanaisUri())));}
-    public void SalvarCanais() {setPaths(new StringBuilder(String.valueOf(getCanais())),getCanaisUri(),false);}
-    public String getCanaisUri() { return new Arquivos().VerificarArq()+"\\canal.txt";}
-    public void setPaths(StringBuilder stringBuilder, String URI, boolean concat) {
-        
-            try (BufferedWriter gravar = new BufferedWriter(new FileWriter(URI,concat))) {
-                gravar.write(String.valueOf(stringBuilder));
-                gravar.flush();
-            }
-        
-        catch (IOException e)
-        {
-            JOptionPane.showMessageDialog(null,"nao foi possível gravar");
-            throw new RuntimeException(e);
-        }
-    }
-    public StringBuilder getPaths(String URI) {
-        StringBuilder ItemSalvo;
-        
-        try (BufferedReader ler = new BufferedReader(new FileReader(URI))) 
-        {
-            ItemSalvo = new StringBuilder(ler.readLine());
-         }
-        catch (IOException e)
-        {
-            JOptionPane.showMessageDialog(null,"nao foi possível ler!");
-            throw new RuntimeException(e);
-        }
-        return new StringBuilder(ItemSalvo);
-    }
+
+    private int lerCanais(){return Integer.parseInt(String.valueOf(new Paths().getPaths(getCanaisUri())));}
+
+    private void SalvarCanais() { new Paths().setPaths(new StringBuilder(String.valueOf(getCanais())),getCanaisUri(),false);}
+
+    private String getCanaisUri() { return new Arquivos().VerificarArq()+"\\canal.txt";}
+
 }

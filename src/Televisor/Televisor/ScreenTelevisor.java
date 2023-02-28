@@ -1,6 +1,7 @@
 package Televisor;
 
 import javax.swing.*;
+
 import java.awt.*;
 import java.awt.event.*;
 
@@ -92,7 +93,7 @@ public class ScreenTelevisor extends JFrame {
         JB5.setFocusable(true);
         JB5.setVisible(true);
         JB5.addActionListener(e -> {
-            new Televisor().setCanais(Integer.parseInt(JTF1.getText()),"[[");
+            new Televisor().setCanais(Integer.parseInt(JTF1.getText()),"[]");
             TrocarCanais();
         });
 
@@ -104,7 +105,7 @@ public class ScreenTelevisor extends JFrame {
         JTF1.setFont(new Font("Arial", Font.BOLD, 10));
         JTF1.setVisible(true);
         JTF1.addActionListener(e -> {
-            new Televisor().setCanais(Integer.parseInt(JTF1.getText()),"[[");
+            new Televisor().setCanais(Integer.parseInt(JTF1.getText()),"[]");
             TrocarCanais();
         });
         JB5.addKeyListener(new KeyListener() {
@@ -116,7 +117,7 @@ public class ScreenTelevisor extends JFrame {
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    new Televisor().setCanais(Integer.parseInt(JTF1.getText()),"[[");
+                    new Televisor().setCanais(Integer.parseInt(JTF1.getText()),"[]");
                     TrocarCanais();}
             }
 
@@ -193,7 +194,7 @@ public class ScreenTelevisor extends JFrame {
 
     }
     public void TrocarCanais(){
-        int d = new Televisor().MostrarCanais(-2000);
+        int d = new Televisor().MostrarCanais();
         switch (d){
             case 0 -> {
                 System.out.println("canal 0");

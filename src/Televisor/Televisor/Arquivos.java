@@ -43,10 +43,10 @@ public class Arquivos
 
         if (!VerificarTexto())
         {
-            new Televisor().setPaths(new StringBuilder(String.valueOf(SolicitarUri())), getUripadrao(), false);
+            new Paths().setPaths(new StringBuilder(String.valueOf(SolicitarUri())), getUripadrao(), false);
             VerificarArq();
         }
-        return String.valueOf(new Televisor().getPaths(getUripadrao()));
+        return String.valueOf(new Paths().getPaths(getUripadrao()));
     }
     public String SolicitarUri() {
         return JOptionPane.showInputDialog(null, """
