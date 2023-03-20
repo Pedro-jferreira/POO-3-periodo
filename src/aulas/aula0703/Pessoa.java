@@ -2,8 +2,8 @@ package aulas.aula0703;
 
 public class Pessoa {
 	private String nome;
-	private String corDoCabelo;
-	private String biotipo;
+	private String cpf;
+	private String genero;
 	private int idade;
 	private Carro carro;
 
@@ -13,6 +13,10 @@ public class Pessoa {
 
 	public void setCarro(Carro carro) {
 		this.carro = carro;
+	}
+	void  usarcambio(int cambio){
+		carro.setCambio(cambio);
+		carro.getCambio();
 	}
 
 	void Ligar() {
@@ -35,17 +39,17 @@ public class Pessoa {
 
 	}
 
-	public Pessoa(String nome, String corDoCabelo, String biotipo, int idade) {
+	public Pessoa(String nome, String cpf, String genero, int idade) {
 		this.nome = nome;
-		this.corDoCabelo = corDoCabelo;
-		this.biotipo = biotipo;
+		this.cpf = cpf;
+		this.genero = genero;
 		this.idade = idade;
 	}
 
-	public Pessoa(String nome, String corDoCabelo, String biotipo, int idade, Carro carro) {
+	public Pessoa(String nome, String cpf, String genero, int idade, Carro carro) {
 		this.nome = nome;
-		this.corDoCabelo = corDoCabelo;
-		this.biotipo = biotipo;
+		this.cpf = cpf;
+		this.genero = genero;
 		this.idade = idade;
 		this.carro = carro;
 	}
@@ -58,20 +62,20 @@ public class Pessoa {
 		this.nome = nome;
 	}
 
-	public String getCorDoCabelo() {
-		return corDoCabelo;
+	public String getCpf() {
+		return cpf;
 	}
 
-	public void setCorDoCabelo(String corDoCabelo) {
-		this.corDoCabelo = corDoCabelo;
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
 
-	public String getBiotipo() {
-		return biotipo;
+	public String getGenero() {
+		return genero;
 	}
 
-	public void setBiotipo(String biotipo) {
-		this.biotipo = biotipo;
+	public void setGenero(String genero) {
+		this.genero = genero;
 	}
 
 	public int getIdade() {
@@ -84,8 +88,7 @@ public class Pessoa {
 
 	@Override
 	public String toString() {
-		return "\nnome = " + nome + "\ncorDoCabel = " + corDoCabelo + "\nbiotipo = " + biotipo + "\nidade = " + idade
-				+ "\n Carro->" + carro;
+		return "\n INFORMAÇÕES PESSOAIS->\n nome: " + nome + "\n cpf: " + cpf + "\n genero: " + genero + "\n idade: " + idade +"\n"+ carro;
 	}
 
 }

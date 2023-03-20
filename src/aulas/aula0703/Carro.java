@@ -36,12 +36,14 @@ public class Carro {
 	void Freiar(){
 		System.out.println("freiando");
 	}
-    public Pessoa getPropietario() {
-        return getPropietario();
-    }
-    public void setPropietario(Pessoa proprietario) {
-        this.proprietario = proprietario;
-    }
+
+	public Pessoa getProprietario() {
+		return proprietario;
+	}
+	public void setProprietario(Pessoa proprietario) {
+		this.proprietario = proprietario;
+	}
+
 	public Carro(String tipo, String cor, String placa, int numPortas, Pessoa pessoa) {
 		this.tipo=tipo;
 		this.cor=cor;
@@ -84,7 +86,8 @@ public class Carro {
 
 	@Override
 	public String toString() {
-		return  "Carro ->\ntipo = " + tipo + "\ncor = " + cor + "\nplaca = " + placa + "\nnumPortas = " + numPortas + "\nproprietario -> " + proprietario;
+		return  " Informações do Carro ->\n tipo: " + tipo + "\n cor: " + cor + "\n placa: " + placa + "\n numero de portas: "
+				+ numPortas + "\n proprietário: "+ proprietario.getNome();
 
 	}
 	public Carro() {}
