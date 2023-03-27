@@ -50,7 +50,7 @@ public class Aluno extends Pessoa implements Serializable {
                 ", cpf='" + cpf + '\'' +
                 ", matricula='" + matricula + '\'' +
                 ", curso='" + curso + '\'' +
-                ", turma='" + turma + '\'' +
+                ", turmaaa='" + turma + '\'' +
 
                 '}';
     }
