@@ -1,131 +1,143 @@
 package biblioteca;
 
+import biblioteca.Armazenamento.UsuariosArray;
+import biblioteca.Usuario.Aluno;
+import biblioteca.Usuario.Funcionario;
+import biblioteca.Usuario.Professor;
+import biblioteca.Usuario.Usuario;
+
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
+    UsuariosArray usuariosArray = new UsuariosArray();
+
+
 
     public static void main(String[] args) {
-         ArrayList<Usuario> usuarios = new ArrayList<>();
-         ArrayList<Livro>livros= new ArrayList<>();
-         ArrayList<Emprestimo>emprestimos=new ArrayList<>();
+
         Main main = new Main();
-        boolean iniciar = true;
-        while (iniciar){
-        switch (main.MenuInicial()){
-            case 1 ->{livros.add(main.CadastrarLivro());
-                System.out.println("livro cadastrado com sucesso");}
-            case 2 ->{usuarios.add(main.CadastrarUsuario());
-                System.out.println("usuario cadastrado com sucesso");}
-            case 3 ->{emprestimos.add(main.RealizarEmprestimo(usuarios,livros));
-                System.out.println("emprestimo realizado com sucesso");}
-            case 4 -> main.Devolverlivro(emprestimos);
-            case 5 ->{
-                for (Emprestimo emprestimo:emprestimos) {
-                    System.out.println(emprestimo);
-                }
-            }
-            case 6-> iniciar=false;
-            default -> System.out.println("erro!!\n digite um numero de 1 - 5");
-        }}
-        System.exit(0);
-
-
+        main.usuariosArray.PrencherArray();
+        while (true){
+            main.MenuPrincipal();
+        }
     }
-    int MenuInicial(){
-        System.out.println("""
-                <<<<<<<Biblioteca Virtual>>>>>>
+    public void MenuPrincipal(){
+        switch (Integer.parseInt(InputScanner("""
+                <<<<<<<<<<<<<Biblioteca virtual>>>>>>>>>>>>
                 
-                digite um numero para:
+                           Cadastrar usuario(1)
+                            Cadastrar Livro(2)
+                          Realizar emprestimo(3)
+                            Devolver Livro (4)
+                            Listar usuarios(5)
+                             Listar livros(6)
+                                 Sair (7)"""))){
+            case 1->{CadastrarUsuario();}
+            case 2->{}
+            case 3->{}
+            case 4->{}
+            case 5->{usuariosArray.Imprimir();}
+            case 6->{}
+            case 7->{}
+        }
+    }
+
+    public void CadastrarUsuario(){
+        switch (Integer.parseInt(InputScanner("""
+                Cadastrar usuario:
                 
-                       cadastrar livro(1)
-                      cadastrar usuario(2)
-                     realizar emprestimo(3)
-                     devolver emprestimo(4)
-                   listar todos emprestimos(5)
-                           sair(6)
-               <<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>""");
-        Scanner scan = new Scanner(System.in);
-        return scan.nextInt();
-
-    }
-    String Scanner(String mensagem){
-        Scanner scan = new Scanner(System.in);
-        System.out.println(mensagem);
-        return scan.nextLine();
-    }
-
-    Livro CadastrarLivro(){
-        return   new Livro(Scanner("digite o titulo do livro"),Scanner("digite o nome do autor"));
-    }
-    Usuario CadastrarUsuario(){
-        System.out.println("""
-                <<<<<<<<<cadastrar usuario>>>>>>>
-                 
-                  voce quer cadastrar um:
-                       aluno(1)
-                     professor(2)
-                    funcionario(3)""");
-        switch (Integer.parseInt(Scanner("digite um numero de 1-3"))){
-            case 1->{
-                return new Usuario(CadastrarAluno());
-            }
-            case 2->{
-                return new Usuario(CadastrarProfessor());}
-            case 3->{
-                return new Usuario(CadastrarFuncionario());}
-            default -> System.out.println("erro!!\n digite um numero de 1-3");
+                         aluno(1)
+                      Professor(2)
+                     funcionario(3)
+             atualizar informacoes do usuario(4)
+                   excluir usuario(5)
+                        Voltar(7)
+                     
+                digite um numero:"""))){
+            case 1 ->{addArrayUsuario(new Usuario(CadastrarAluno()));}
+            case 2 ->{addArrayUsuario(new Usuario(CadastrarProfessor()));}
+            case 3 ->{addArrayUsuario(new Usuario(CadastrarFuncionario()));}
+            case 4->{AtualizarInfo();}
+            case 5->{}
+            case 6->{}
+            case 7->{}
+            default -> System.out.println("erro digite um numero de 1-3");
         }
 
-        return null;
     }
-    Aluno CadastrarAluno(){
-        return new Aluno(Scanner("digite o nome do aluno:"), Scanner("digite o numero de cpf:"),
-                Scanner("digite a idade:"), Scanner("digite a matricula:"),
-                Scanner("digite o curso:"),Scanner("digite a sala:"));
+    void addArrayUsuario(Usuario usuario){
+        usuariosArray.addArray(usuario);
+        usuario.Gravar();
+        System.out.println("usuario cadastrado com sucesso!!");
+    }
+
+    String InputScanner(String menssagem){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println(menssagem);
+        return scanner.nextLine();
+    }
+
+    Funcionario CadastrarFuncionario(){
+        System.out.println("cadastrar funcionario >>>>>>>>>>\n ");
+        return new Funcionario(InputScanner("digite o nome: "),VerificarCpf(InputScanner("digite o cpf: ")),
+                InputScanner("digite a matricula: "), InputScanner("digite o salario: "),
+                InputScanner("digite o setor: "));
     }
     Professor CadastrarProfessor(){
-        return new Professor(Scanner("digite o nome:"), Scanner("digite o cpf:"),Scanner("digite a idade:"),
-                Scanner("digite o salario:"), Scanner("digite a matricula:"), Scanner("digite a formacao:")
-                , Scanner("digite o turno:"), Scanner("digite a materia a ser ministrada:"));
+        System.out.println("cadastrar Professor >>>>>>>>>>\n ");
+        return new Professor(InputScanner("digite o nome: "),VerificarCpf(InputScanner("digite o cpf: ")),
+                InputScanner("digite a matricula: "), InputScanner("digite o salario: "),
+                InputScanner("digite o setor: "),InputScanner("digite a formacao: "));
     }
-    Funcionario CadastrarFuncionario(){
-        return new Funcionario(Scanner("digite o nome:"), Scanner("digite o cpf:"), "digite a idade:",
-                "digite o salario:", "digite a ,atricula:");
+    Aluno CadastrarAluno(){
+        System.out.println("cadastrar aluno >>>>>>>>>>\n ");
+        return  new Aluno(InputScanner("digite o nome: "),VerificarCpf(InputScanner("digite o cpf: ")),
+                InputScanner("digite a matricula: "),InputScanner("digite o curso: "),
+                InputScanner("digite a turma: "));
     }
-
-    Emprestimo RealizarEmprestimo(ArrayList<Usuario> usuarios, ArrayList<Livro> livros){
-
-        Emprestimo emprestimo = new Emprestimo(Scanner("digite a data do emprestimo:"), Integer.parseInt(Scanner("digite a hora:")));
-        String nome = Scanner("digite o nome do usuario:");
-        String titulo = Scanner("digite o titulo do livro:");
+    String VerificarCpf(String cpf){
+        File file = new File("C:\\Users\\pedro\\OneDrive\\Área de Trabalho\\algo\\"+cpf);
+        if (!file.exists()){
+            return cpf;
+        }else return null;
+    }
+    void AtualizarInfo(){
+        Object primario = UsuarioExiste(usuariosArray.retornar(), InputScanner("digite o cepf: "));
+        Usuario usuario01 = (Usuario) primario;
+        System.out.println("oba!! Usuario encontrado:");
+        System.out.println(primario);
+        System.out.println("agora digite as novas informacoes: ");
+        Object secundario= AtualizarUsuario();
+        Usuario usuario = new Usuario();
+        usuario= (Usuario) primario;
+        usuariosArray.AtualizarArray(usuario,secundario);
+        usuario.Atualizar(secundario);
+    }
+    Object UsuarioExiste(ArrayList<Object> objects,String cpf){
+        ArrayList<Usuario>usuarios= new ArrayList<>();
+        for (Object objeto:objects) {usuarios.add((Usuario) objeto);}
 
         for (Usuario usuario:usuarios) {
-            if (usuario.aluno == null && usuario.funcionario==null){
-                if (usuario.professor.getNome().equals(nome)) {emprestimo.setUsuario(usuario);}
-
-            } else if (usuario.professor == null && usuario.funcionario == null) {
-                if (usuario.aluno.getNome().equals(nome)){emprestimo.setUsuario(usuario);}
-            }else{if (usuario.funcionario.getNome().equals(nome)){emprestimo.setUsuario(usuario);}}
-        }
-
-        for (Livro livro:livros) {
-            System.out.println(livro);
-            if (livro.getTitulo().equals(titulo)){
-                livro.setEmprestimo(false);
-                emprestimo.setLivro(livro);
+            if (usuario.getCpf().equals(cpf)){
+                return usuario;
             }
-
+        }return null;
+    }
+    Usuario AtualizarUsuario(){
+            switch (Integer.parseInt(InputScanner("""
+                Cadastrar usuario:
+                
+                         aluno(1)
+                      Professor(2)
+                     funcionario(3)"""))){
+            case 1 ->{return new Usuario(CadastrarAluno());}
+            case 2 ->{return new Usuario(CadastrarProfessor());}
+            case 3 ->{return new Usuario(CadastrarFuncionario());}
+                default -> System.out.println("erro!!");
         }
-        return emprestimo;
-
+        return null;
     }
-    void Devolverlivro(ArrayList<Emprestimo>emprestimos){
-        String titulo = Scanner("digite o titulo do livro:");
-        for (Emprestimo emprestimo: emprestimos) {
-            if (emprestimo.getLivro().getTitulo().equals(titulo)){
-                emprestimo.DevolverLivro();
-            }}
-
     }
-}
+
