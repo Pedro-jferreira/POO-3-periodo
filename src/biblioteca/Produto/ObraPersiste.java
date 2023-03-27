@@ -27,7 +27,7 @@ public class ObraPersiste {
             stream.flush();
             System.out.println("salvo");
         }catch (Exception erro) {
-            ret = "Falha de gravação\n "+erro.toString();
+            ret = "Falha de gravação tente de novo\n "+erro.toString();
         }
         return ret;
     }
