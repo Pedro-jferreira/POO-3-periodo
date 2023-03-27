@@ -33,7 +33,8 @@ public class Main {
                             Devolver Livro (4)
                             Listar usuarios(5)
                              Listar livros(6)
-                                 Sair (7)"""))){
+                                 Sair (7)
+                         digite um numero:"""))){
             case 1->{CadastrarUsuario();}
             case 2->{}
             case 3->{}
