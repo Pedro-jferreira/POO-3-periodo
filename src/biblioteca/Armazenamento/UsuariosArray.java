@@ -5,7 +5,9 @@ import biblioteca.Usuario.Usuario;
 import java.io.File;
 import java.util.ArrayList;
 
+
 public class UsuariosArray implements Config{
+
     ArrayList<Usuario> usuarios= new ArrayList<>();
 
    public void PrencherArray(){
@@ -18,8 +20,11 @@ public class UsuariosArray implements Config{
 
     }
 
+
+
     @Override
     public void addArray(Object objeto) {
+
         try {
             usuarios.add((Usuario) objeto);
             System.out.println(((Usuario) objeto).getNome()+" foi adicionado com sucesso\n"+((Usuario) objeto).Gravar()
@@ -28,6 +33,7 @@ public class UsuariosArray implements Config{
             System.out.println("nao foi possivel adiconar o usuario: "+((Usuario) objeto).getNome());
             throw new RuntimeException(e);
         }
+
 
     }
 

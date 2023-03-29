@@ -3,6 +3,7 @@ package biblioteca.Usuario;
 import java.io.Serializable;
 
 public class Professor extends Funcionario  {
+  
     private String formacao;
 
     public Professor() {

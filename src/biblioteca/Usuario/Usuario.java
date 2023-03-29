@@ -98,28 +98,10 @@ Pessoa pessoa;
         Usuario usuarionovo = new Usuario();
         usuarionovo =  (Usuario)objtatualizado;
         Usuario usuarioantigo = new Usuario(getPessoa());
-        try {
+        Excluir(getCpf());
+        setPessoa(usuarionovo.getPessoa());
+        Gravar();
 
-            File file1 = new File(caminho + this.getCpf());
-            FileOutputStream file = new FileOutputStream(caminho + this.getCpf());
-            ObjectOutputStream stream = new ObjectOutputStream(file);
-            stream.reset();
-            stream.writeObject(objtatualizado);
-            stream.flush();
-            stream.close();
-            setPessoa(usuarionovo.getPessoa());
-            file1.renameTo(new File(caminho + this.getCpf()));
-
-
-        } catch (FileNotFoundException e) {
-            System.out.println("não foi possivel ler o arquivo");
-            setPessoa(usuarioantigo.getPessoa());
-
-           throw new RuntimeException(e);
-       } catch (IOException e) {
-            System.out.println("não foi possivel alterar o usuario");
-           throw new RuntimeException(e);
-       }
         return "usuario alterado com sucesso!!";
     }
 
